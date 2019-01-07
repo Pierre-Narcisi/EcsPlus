@@ -46,6 +46,7 @@ int main() {
 		}
 		pool.unlockWork();
 		while (!pool.isDone());
+
 	}
 	std::cout << ecs::Time::get(TimeUnit::MilliSeconds) - time << std::endl;
 

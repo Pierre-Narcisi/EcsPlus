@@ -13,16 +13,13 @@
 int main() {
 	auto &game = ecs::Ecs::get();
 	physic2D::system::physic2D physic = physic2D::system::physic2D();
-
-	game.addUpdate(1, [](){
-		std::cout << "Je suis une update" << std::endl;
-	});
 	game.addUpdate(1, [&physic](){physic.UpdatePhysic();});
 
 	ID sauce = ecs::entity::Entity::getId();
-	ecs::Ecs::get().addComponent<physic2D::component::Speed>(sauce, 1, physic2D::Vec2(1, 0));
+	ecs::Ecs::get().addComponent<physic2D::component::Speed>(sauce, 1, physic2D::Vec2(1, 1));
 	while(1) {
 		game.update();
+		// std::this_thread::sleep_for (std::chrono::seconds(1));
 	}
 	
 	return 0;

@@ -20,6 +20,10 @@ add_executable(EcsPlus
         src/ecs/TimedEvent.hpp
         src/ecs/TimedEventAdmin.cpp
         src/ecs/TimedEventAdmin.hpp
+		src/physic2D/system/physic2D.cpp
+		src/physic2D/system/physic2D.hpp
+		src/physic2D/Vec2/vec2.cpp
+		src/physic2D/Vec2/vec2.hpp
 
         src/ecs/ThreadPool.cpp
         src/ecs/ThreadPool.hpp

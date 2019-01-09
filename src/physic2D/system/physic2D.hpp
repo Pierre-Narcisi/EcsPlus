@@ -7,6 +7,7 @@
 #include "../component/Forces.hpp"
 #include "../component/Pos.hpp"
 #include "../component/Speed.hpp"
+#include "../component/AABB.hpp"
 #include "math.h"
 
 namespace physic2D { namespace system {

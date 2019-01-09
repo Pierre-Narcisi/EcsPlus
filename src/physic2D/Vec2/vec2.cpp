@@ -26,6 +26,17 @@ namespace physic2D {
 		return res;
 	}
 
+	Vec2 Vec2::operator/(float v) {
+		Vec2 res = Vec2(this->x / v, this->y / v);
+		return res;
+	}
+
+	Vec2 Vec2::operator*(float v) {
+		Vec2 res = Vec2(this->x * v, this->y * v);
+		return res;
+
+	}
+
 	float Vec2::length() {
 		return this->x * this->x + this->y * this->y;
 	}

@@ -10,14 +10,11 @@ namespace physic2D {
 			void operator=(Vec2 v);
 			Vec2 operator+(Vec2 v);
 			Vec2 operator-(Vec2 v);
+			Vec2 operator/(float v);
+			Vec2 operator*(float v);
 			float length();
 			float lengthSquared();
-			float getX();
-			float getY();
-			void setX(float x);
-			void setY(float y);
-		private:
-			float _x;
-			float _y;
+			float x;
+			float y;
 	};
 }

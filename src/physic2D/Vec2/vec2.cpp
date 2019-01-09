@@ -2,51 +2,46 @@
 
 namespace physic2D {
 	Vec2::Vec2() {
-		_x = 0;
-		_y = 0;
+		this->x = 0;
+		this->y = 0;
 	}
 
 	Vec2::Vec2(float x, float y) {
-		_x = x;
-		_y = y;
+		this->x = x;
+		this->y = y;
 	}
 
 	void Vec2::operator=(Vec2 v) {
-		_x = v.getX();
-		_y = v.getY();
+		this->x = v.x;
+		this->y = v.y;
 	}
 
 	Vec2 Vec2::operator+(Vec2 v) {
-		Vec2 res = Vec2(_x + v.getX(), _y + v.getY());
+		Vec2 res = Vec2(this->x + v.x, this->y + v.y);
 		return res;
 	}
 
 	Vec2 Vec2::operator-(Vec2 v) {
-		Vec2 res = Vec2(_x - v.getX(), _y - v.getY());
+		Vec2 res = Vec2(this->x - v.x, this->y - v.y);
 		return res;
 	}
 
+	Vec2 Vec2::operator/(float v) {
+		Vec2 res = Vec2(this->x / v, this->y / v);
+		return res;
+	}
+
+	Vec2 Vec2::operator*(float v) {
+		Vec2 res = Vec2(this->x * v, this->y * v);
+		return res;
+
+	}
+
 	float Vec2::length() {
-		return _x * _x + _y * _y;
+		return this->x * this->x + this->y * this->y;
 	}
 
 	float Vec2::lengthSquared() {
-		return std::sqrt(_x * _x + _y * _y);
-	}
-
-	float Vec2::getX() {
-		return _x;
-	}
-
-	float Vec2::getY() {
-		return _y;
-	}
-
-	void Vec2::setX(float x) {
-		_x = x;
-	}
-
-	void Vec2::setY(float y) {
-		_y = y;
+		return std::sqrt(this->x * this->x + this->y * this->y);
 	}
 }

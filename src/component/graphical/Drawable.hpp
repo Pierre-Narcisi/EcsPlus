@@ -20,11 +20,19 @@ namespace ecs { namespace component {
 		}
 		Drawable(bool drawable, int layer, GraphicalMethod method) {
 			this->drawable = drawable;
-			this->layer = -10;
+			this->layer = layer;
+			this->rotation = 0;
+			this->method = method;
+		}
+		Drawable(bool drawable, int layer, float rotation, GraphicalMethod method) {
+			this->drawable = drawable;
+			this->layer = layer;
+			this->rotation = rotation;
 			this->method = method;
 		}
 		bool		drawable;
 		int 		layer;
+		float		rotation;
 		GraphicalMethod	method;
 	};
 }}

@@ -15,7 +15,8 @@ namespace ecs { namespace component {
 		Sprite() {}
 
 	#ifndef SERVER
-		Sprite(std::string path) {
+		Sprite(std::string const &path) {
+			this->sprite = new sf::Sprite();
 			this->sprite->setTexture(ecs::DataBank<std::string, sf::Texture>::get()[path]);
 
 			auto sizeT = this->sprite->getTexture()->getSize();
@@ -26,6 +27,7 @@ namespace ecs { namespace component {
 		}
 
 		Sprite(std::string path, ecs::core::Vector2<unsigned int> size) {
+			this->sprite = new sf::Sprite();
 			this->sprite->setTexture(ecs::DataBank<std::string, sf::Texture>::get()[path]);
 
 			auto sizeT = this->sprite->getTexture()->getSize();
@@ -51,7 +53,8 @@ namespace ecs { namespace component {
 			this->boxSize = this->size;
 		}
 
-			sf::Sprite *sprite;
+		sf::Sprite *sprite;
+
 	#endif /// SERVER
 
 	#ifdef SERVER

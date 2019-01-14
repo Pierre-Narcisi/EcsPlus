@@ -8,8 +8,8 @@
 #pragma once
 
 #include <unordered_map>
-#include <core/CoreVector.hpp>
 #include <functional>
+#include <ecs/Vector2.hpp>
 #include "ecs/Entity.hpp"
 
 enum class KeyMouse {

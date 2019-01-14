@@ -5,7 +5,7 @@ namespace physic2D { namespace system {
 		_lastTime = ecs::Time::get(TimeUnit::NanoSeconds);
 	}
 
-	void UpdatePos() {
+	void physic2D::UpdatePos() {
 		auto AABBIds = ecs::Ecs::get().filter<component::AABB>();
 		auto &pos = ecs::Ecs::get().getComponentMap<component::Pos>();
 		auto &AABB = ecs::Ecs::get().getComponentMap<component::AABB>();
@@ -38,7 +38,7 @@ namespace physic2D { namespace system {
 			std::cout << "X: " << pos[id]._pos.x << std::endl;
 			std::cout << "Y: " << pos[id]._pos.y << std::endl;
 			std::cout << "ouais: " << (sinf(angle) * (speed[id]._speed * _deltaTime)) << std::endl;
-			std::cout << "DT: " << _deltaTime << std::endl;
+			std::cout << "DT: " << _deltaTime << std::endl << std::endl;
 		}
 
 	}
@@ -69,5 +69,6 @@ namespace physic2D { namespace system {
 		_lastTime = newTime;
 		UpdateAcceleration();
 		UpdateSpeed();
+		UpdatePos();
 	}
 }}

@@ -10,7 +10,7 @@
 #include <ecs/Graphic.hpp>
 #include <system/Update.hpp>
 #include <ecs/DataBank.hpp>
-#include <component/graphical/Sprite.hpp>
+#include <component/graphical/AnimatedSprite.hpp>
 #include <component/graphical/Drawable.hpp>
 #include <zconf.h>
 #include "src/physic2D/system/physic2D.hpp"
@@ -33,8 +33,8 @@ int main() {
 
 	ID sauce = ecs::entity::Entity::getId();
 	game.addComponent<physic2D::component::Speed>(sauce, 10, physic2D::Vec2(1, 1));
-	game.addComponent<ecs::component::Sprite>(sauce, std::string("assets/test.jpg")/*, ecs::core::Vector2<unsigned int>(500,500)*/);
-	game.addComponent<ecs::component::Drawable>(sauce, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<ecs::component::AnimatedSprite>(sauce, std::string("assets")/*, ecs::core::Vector2<unsigned int>(500,500)*/);
+	game.addComponent<ecs::component::Drawable>(sauce, true, 10, GraphicalMethod::AnimatedSprite);
 
 	while(screen.isOpen()) {
 

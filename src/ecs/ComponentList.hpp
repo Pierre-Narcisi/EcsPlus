@@ -47,11 +47,13 @@ namespace ecs {
 		/// \return
 		std::vector<ID> getIdForComponent(std::function<bool(T&)> function) {
 			std::vector<ID> ids;
+			ids.reserve(_ids.size());
 
 			for (auto map : _map) {
 				if (function(*map.second))
 					ids.push_back(*map.first);
 			}
+			ids.shrink_to_fit();
 			return ids;
 		}
 

@@ -80,10 +80,12 @@ namespace ecs{
 		template <typename ...Args>
 		std::vector<ID> filter() {
 			std::vector<ID> valableId;
+			valableId.reserve(_ids.size());
 			for (auto &it : get()._deleteIds) {
 				if (idHasComponents<Args...>(it.first))
 					valableId.emplace_back(it.first);
 			}
+			valableId.shrink_to_fit();
 			return (valableId);
 		}
 

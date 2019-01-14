@@ -4,16 +4,14 @@ project(EcsPlus)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package (Threads)
-message("OUI")
-find_package(SFML 2 REQUIRED audio graphics window system)
-if(SFML_FOUND)
-	message("OUI")
-endif()
 
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(src)
 include_directories(component)
 include_directories(system)
+
+find_package(Boost)
+include_directories(${Boost_INCLUDE_DIRS})
 
 add_executable(EcsPlus
         src/ecs/DataBank.hpp
@@ -58,7 +56,10 @@ add_executable(EcsPlus
 		Main.cpp src/component/graphical/AnimatedSprite.hpp)
 
 target_link_libraries(EcsPlus ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(EcsPlus ${Boost_LIBRARIES})
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-audio.so)
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-graphics.so)
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-window.so)
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-system.so)
+target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.67.0)
+target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libboost_system.so.1.67.0)

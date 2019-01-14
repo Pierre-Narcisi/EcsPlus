@@ -6,7 +6,19 @@ namespace physic2D { namespace system {
 	}
 
 	void UpdatePos() {
+		auto AABBIds = ecs::Ecs::get().filter<component::AABB>();
+		auto &pos = ecs::Ecs::get().getComponentMap<component::Pos>();
+		auto &AABB = ecs::Ecs::get().getComponentMap<component::AABB>();
 
+		for (auto id : AABBIds) {
+			if (!ecs::Ecs::get().idHasComponents<component::Pos>(id)) {
+				ecs::Ecs::get().addComponent<component::Pos>(id, AABB[id]._pos);
+				pos = ecs::Ecs::get().getComponentMap<component::Pos>();
+			}
+			AABB[id]._pos = pos[id]._pos;
+			AABB[id]._max = AABB[id]._pos + AABB[id]._size / 2;
+			AABB[id]._min = AABB[id]._pos - AABB[id]._size / 2;
+		}
 	}
 
 	void physic2D::UpdateSpeed() {
@@ -21,7 +33,7 @@ namespace physic2D { namespace system {
 			}
 			double angle = std::atan2(speed[id]._normal.x, speed[id]._normal.y);
 			pos[id]._pos.x += sinf(angle) * (speed[id]._speed * _deltaTime);
-			pos[id]._pos.y += (cosf(angle) * (speed[id]._speed * _deltaTime));
+			pos[id]._pos.y += cosf(angle) * (speed[id]._speed * _deltaTime);
 			std::cout << "speed: " << speed[id]._speed << std::endl;
 			std::cout << "X: " << pos[id]._pos.x << std::endl;
 			std::cout << "Y: " << pos[id]._pos.y << std::endl;

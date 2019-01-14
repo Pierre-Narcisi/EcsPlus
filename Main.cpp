@@ -35,7 +35,6 @@ int main() {
 	game.addComponent<physic2D::component::Speed>(sauce, 10, physic2D::Vec2(1, 1));
 	game.addComponent<ecs::component::AnimatedSprite>(sauce, std::string("assets")/*, ecs::core::Vector2<unsigned int>(500,500)*/);
 	game.addComponent<ecs::component::Drawable>(sauce, true, 10, GraphicalMethod::AnimatedSprite);
-
 	while(screen.isOpen()) {
 
 		long time = ecs::Time::get(TimeUnit::MicroSeconds);

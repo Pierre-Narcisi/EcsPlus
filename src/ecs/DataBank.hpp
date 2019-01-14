@@ -57,9 +57,10 @@ namespace ecs {
 				std::cout << "src/game_engine/ecs/DataBank: creator not initialised" << std::endl;
 				exit(84);
 			}
-			if (map.find(iterator) == map.end())
-				map[iterator] = creator(iterator);
-			return (map[iterator]);
+			auto it = map.find(iterator);
+			if (it == map.end())
+				return (map.insert(std::make_pair(iterator, creator(iterator))).first->second);
+			return (it->second);
 		}
 
 

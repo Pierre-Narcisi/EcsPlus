@@ -5,13 +5,7 @@
 ** Created by seb,
 */
 
-#define _USE_MATH_DEFINES
 #include <cmath>
-#include <component/control/DeplacementKeyBoard.hpp>
-#include <component/physic/Position.hpp>
-#include <component/physic/Speed.hpp>
-#include <component/control/DeplacementMouse.hpp>
-#include <component/control/LazyDeplacementMouse.hpp>
 #include "component/control/Controller.hpp"
 #include "ControlsSFML.hpp"
 #include "ecs/Ecs.hpp"

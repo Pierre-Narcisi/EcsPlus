@@ -22,11 +22,11 @@ namespace physic2D { namespace system {
 			double angle = std::atan2(speed[id]._normal.x, speed[id]._normal.y);
 			pos[id]._pos.x += sinf(angle) * (speed[id]._speed * _deltaTime);
 			pos[id]._pos.y += (cosf(angle) * (speed[id]._speed * _deltaTime));
-			std::cout << "speed: " << speed[id]._speed << std::endl;
+			/*std::cout << "speed: " << speed[id]._speed << std::endl;
 			std::cout << "X: " << pos[id]._pos.x << std::endl;
 			std::cout << "Y: " << pos[id]._pos.y << std::endl;
 			std::cout << "ouais: " << (sinf(angle) * (speed[id]._speed * _deltaTime)) << std::endl;
-			std::cout << "DT: " << _deltaTime << std::endl;
+			std::cout << "DT: " << _deltaTime << std::endl << std::endl;*/
 		}
 
 	}

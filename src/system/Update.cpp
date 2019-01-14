@@ -27,10 +27,13 @@ namespace ecs {
 		for (auto id : ids) {
 			switch (drawable[id].method){
 				case GraphicalMethod::Sprite :
-					sprite[id].sprite->setPosition(pos[id]._pos.getX(), pos[id]._pos.getY());
-					win->draw(sprite[id].sprite);
+					sprite[id].sprite->setPosition(pos[id]._pos.x, pos[id]._pos.y);
+					sprite[id].sprite->setRotation(drawable[id].rotation);
+					win->draw(*sprite[id].sprite);
+					break;
 				case GraphicalMethod::None :
 					std::cout << "Undefinded GraphicalMethod for ID: " << id << ". Component won't be displayed." << std::endl;
+					break;
 			}
 		}
 	}

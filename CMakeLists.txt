@@ -4,7 +4,12 @@ project(EcsPlus)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package (Threads)
-find_package(SFML 2 REQUIRED network audio graphics window system)
+message("OUI")
+find_package(SFML 2 REQUIRED audio graphics window system)
+if(SFML_FOUND)
+	message("OUI")
+endif()
+
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(src)
 include_directories(component)
@@ -42,12 +47,18 @@ add_executable(EcsPlus
 		src/component/control/Keyboard.hpp
 		src/component/control/Mouse.hpp
 
+		src/system/Update.cpp
+		src/system/Update.hpp
+
 		src/system/control/ControlsSFML.cpp
 		src/system/control/ControlsSFML.hpp
 		src/system/control/Controls.cpp
 		src/system/control/Controls.cpp
 
-		Main.cpp src/system/Update.cpp src/system/Update.hpp)
+		Main.cpp src/component/graphical/AnimatedSprite.hpp)
 
 target_link_libraries(EcsPlus ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(EcsPlus ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-audio.so)
+target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-graphics.so)
+target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-window.so)
+target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-system.so)

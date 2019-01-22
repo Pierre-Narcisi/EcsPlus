@@ -44,7 +44,6 @@ namespace ecs { namespace component {
 			this->last = ecs::Time::get(TimeUnit::MicroSeconds);
 			this->frame = sprites.size();
 			this->pos = 0;
-			this->rotation = 0.f;
 		}
 
 		AnimatedSprite(std::string path, ecs::core::Vector2<float> size) {
@@ -76,7 +75,6 @@ namespace ecs { namespace component {
 			this->last = ecs::Time::get(TimeUnit::MicroSeconds);
 			this->frame = sprites.size();
 			this->pos = 0;
-			this->rotation = 0.f;
 		}
 
 		std::vector<Sprite>	sprites;
@@ -84,7 +82,6 @@ namespace ecs { namespace component {
 		int			pos;
 		long 			delta;
 		long 			last;
-		float 			rotation;
 
 		ecs::core::Vector2<float> size;
 	};

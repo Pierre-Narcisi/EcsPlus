@@ -35,8 +35,12 @@ add_executable(EcsPlus
 		src/ecs/Graphic.cpp
 		src/ecs/Graphic.hpp
 
-		src/physic2D/system/physic2D.cpp
-		src/physic2D/system/physic2D.hpp
+		src/physic2D/system/Gravity.cpp
+		src/physic2D/system/Gravity.hpp
+		src/physic2D/system/Physic2D.cpp
+		src/physic2D/system/Physic2D.hpp
+		src/physic2D/system/Hitbox.cpp
+		src/physic2D/system/Hitbox.hpp
 		src/physic2D/Vec2/vec2.cpp
 		src/physic2D/Vec2/vec2.hpp
 

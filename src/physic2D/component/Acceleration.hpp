@@ -5,16 +5,13 @@
 namespace physic2D { namespace component {
 	struct Acceleration {
 		Acceleration() {
-			_accel = 0;
-			_normal = Vec2(0, 0);
+			_accel = Vec2(0, 0);
 		}
 
-		Acceleration(float accel, Vec2 normal) {
+		Acceleration(Vec2 accel) {
 			_accel = accel;
-			_normal = normal;
 		}
 
-		float _accel;
-		Vec2 _normal;
+		Vec2 _accel;
 	};
 }}

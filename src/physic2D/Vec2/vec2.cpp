@@ -16,6 +16,10 @@ namespace physic2D {
 		this->y = v.y;
 	}
 
+	bool Vec2::operator==(Vec2 v) {
+		return (this->x == v.x && this->y == v.y);
+	}
+
 	Vec2 Vec2::operator+(Vec2 v) {
 		Vec2 res = Vec2(this->x + v.x, this->y + v.y);
 		return res;
@@ -26,6 +30,21 @@ namespace physic2D {
 		return res;
 	}
 
+	Vec2 Vec2::operator-() {
+		Vec2 res = Vec2(-this->x, -this->y);
+		return res;
+	}
+
+	void Vec2::operator-=(Vec2 v) {
+		this->x -= v.x;
+		this->y -= v.y;
+	}
+
+	void Vec2::operator+=(Vec2 v) {
+		this->x += v.x;
+		this->y += v.y;
+	}
+
 	Vec2 Vec2::operator/(float v) {
 		Vec2 res = Vec2(this->x / v, this->y / v);
 		return res;
@@ -34,14 +53,17 @@ namespace physic2D {
 	Vec2 Vec2::operator*(float v) {
 		Vec2 res = Vec2(this->x * v, this->y * v);
 		return res;
+	}
 
+	float Vec2::dot(Vec2 v) {
+		return (this->x * v.x + this->y * v.y);
 	}
 
 	float Vec2::length() {
-		return this->x * this->x + this->y * this->y;
+		return std::sqrt(this->x * this->x + this->y * this->y);
 	}
 
 	float Vec2::lengthSquared() {
-		return std::sqrt(this->x * this->x + this->y * this->y);
+		return this->x * this->x + this->y * this->y;
 	}
 }

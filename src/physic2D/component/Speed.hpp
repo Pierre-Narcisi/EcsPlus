@@ -5,16 +5,13 @@
 namespace physic2D { namespace component {
 	struct Speed {
 		Speed() {
-			_speed = 0;
-			_normal = Vec2(0, 0);
+			_speed = Vec2(0, 0);
 		}
 
-		Speed(float speed, Vec2 normal) {
+		Speed(Vec2 speed) {
 			_speed = speed;
-			_normal = normal;
 		}
 
-		float _speed;
-		Vec2 _normal;
+		Vec2 _speed;
 	};
 }}

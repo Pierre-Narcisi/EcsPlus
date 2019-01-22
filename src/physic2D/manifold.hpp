@@ -9,5 +9,6 @@ namespace physic2D {
 		ID B;
 		float penetration;
 		Vec2 normal;
+		float j;
 	};
 }

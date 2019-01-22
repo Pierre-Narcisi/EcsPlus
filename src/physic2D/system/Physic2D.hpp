@@ -8,12 +8,12 @@
 #include "../component/Pos.hpp"
 #include "../component/Speed.hpp"
 #include "../component/AABB.hpp"
-#include "math.h"
+#include <cmath>
 
 namespace physic2D { namespace system {
-	class physic2D {
+	class Physic2D {
 		public:
-			physic2D();
+			Physic2D();
 			void UpdatePos();
 			void UpdateSpeed();
 			void UpdateAcceleration();

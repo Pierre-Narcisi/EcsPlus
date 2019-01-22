@@ -10,8 +10,13 @@ namespace physic2D {
 			void operator=(Vec2 v);
 			Vec2 operator+(Vec2 v);
 			Vec2 operator-(Vec2 v);
+			void operator-=(Vec2 v);
+			void operator+=(Vec2 v);
+			bool operator==(Vec2 v);
+			Vec2 operator-();
 			Vec2 operator/(float v);
 			Vec2 operator*(float v);
+			float dot(Vec2 v);
 			float length();
 			float lengthSquared();
 			float x;

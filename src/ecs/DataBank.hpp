@@ -30,14 +30,7 @@ namespace ecs {
 		/// \param iterator The iterator I
 		/// \return Return a reference of the component of given iterator
 		static T &get(I iterator) {
-			DataBank<I, T> &bank = DataBank<I,T>::get();
-			if (!bank.creator) {
-				std::cout << "src/game_engine/ecs/DataBank: creator not initialised for type " << std::string(typeid(T).name()) << std::endl;
-				exit(84);
-			}
-			if (bank.map.find(iterator) == bank.map.end())
-				bank.map[iterator] = bank.creator(iterator);
-			return (bank.map[iterator]);
+			return (DataBank<I,T>::get()[iterator]);
 		}
 
 

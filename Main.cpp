@@ -10,7 +10,7 @@
 #include <ecs/Graphic.hpp>
 #include <system/Update.hpp>
 #include <ecs/DataBank.hpp>
-#include <component/graphical/Sprite.hpp>
+#include <component/graphical/AnimatedSprite.hpp>
 #include <component/graphical/Drawable.hpp>
 #include <zconf.h>
 #include "src/physic2D/system/Hitbox.hpp"
@@ -63,6 +63,7 @@ int main() {
 	game.addUpdate(100, [](){ecs::Update::UpdateGraphical();});
 	game.addUpdate(101, [&screen](){screen.update();});
 
+<<<<<<< HEAD
 	createPile(50, grav, 500);
 	createPile(50, grav, 1000);
 
@@ -120,6 +121,12 @@ int main() {
 	// grav.addObject(test);
 	// grav.addObject(test2);
 
+=======
+	ID sauce = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(sauce, 10, physic2D::Vec2(1, 1));
+	game.addComponent<ecs::component::AnimatedSprite>(sauce, std::string("assets")/*, ecs::core::Vector2<unsigned int>(500,500)*/);
+	game.addComponent<ecs::component::Drawable>(sauce, true, 10, GraphicalMethod::AnimatedSprite);
+>>>>>>> 00099fb21481ce0b30bdd640c775db85479e72ce
 	while(screen.isOpen()) {
 
 		long time = ecs::Time::get(TimeUnit::MicroSeconds);

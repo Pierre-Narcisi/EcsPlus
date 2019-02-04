@@ -7,8 +7,10 @@ namespace physic2D { namespace system {
 
 	void Physic2D::UpdatePos() {
 		auto AABBIds = ecs::Ecs::get().filter<component::AABB>();
+		auto polyIds = ecs::Ecs::get().filter<component::Poly>();
 		auto &pos = ecs::Ecs::get().getComponentMap<component::Pos>();
 		auto &AABB = ecs::Ecs::get().getComponentMap<component::AABB>();
+		auto &poly = ecs::Ecs::get().getComponentMap<component::Poly>();
 
 		for (auto id : AABBIds) {
 			if (!ecs::Ecs::get().idHasComponents<component::Pos>(id)) {
@@ -18,6 +20,15 @@ namespace physic2D { namespace system {
 			AABB[id]._max = pos[id]._pos + AABB[id]._size / 2;
 			AABB[id]._min = pos[id]._pos - AABB[id]._size / 2;
 		}
+
+		// for (auto id : polyIds) {
+		// 	if (!ecs::Ecs::get().idHasComponents<component::Pos>(id)) {
+		// 		ecs::Ecs::get().addComponent<component::Pos>(id);
+		// 		pos = ecs::Ecs::get().getComponentMap<component::Pos>();
+		// 	}
+		// 	poly[id]._max = pos[id]._pos + poly[id]._size / 2;
+		// 	poly[id]._min = pos[id]._pos - poly[id]._size / 2;
+		// }
 	}
 
 	void Physic2D::UpdateSpeed() {
@@ -32,11 +43,6 @@ namespace physic2D { namespace system {
 			}
 			pos[id]._pos.x += speed[id]._speed.x * _deltaTime;
 			pos[id]._pos.y += speed[id]._speed.y * _deltaTime;
-			// std::cout << "speed: " << speed[id]._speed << std::endl;
-			// std::cout << "X: " << pos[id]._pos.x << std::endl;
-			// std::cout << "Y: " << pos[id]._pos.y << std::endl;
-			// std::cout << "ouais: " << (sinf(angle) * (speed[id]._speed * _deltaTime)) << std::endl;
-			// std::cout << "DT: " << _deltaTime << std::endl << std::endl;
 		}
 
 	}

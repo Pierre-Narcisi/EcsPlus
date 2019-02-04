@@ -16,6 +16,8 @@ namespace physic2D {
 			Vec2 operator-();
 			Vec2 operator/(float v);
 			Vec2 operator*(float v);
+			Vec2 cross(float s, bool way);
+			float cross(Vec2 &v);
 			float dot(Vec2 v);
 			float length();
 			float lengthSquared();

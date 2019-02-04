@@ -66,4 +66,14 @@ namespace physic2D {
 	float Vec2::lengthSquared() {
 		return this->x * this->x + this->y * this->y;
 	}
+
+	Vec2 Vec2::cross(float s, bool way) {
+		if (way)
+			return Vec2(s * this->y, -s * this->x);
+		return Vec2(-s * this->y, s * this->x);
+	}
+	
+	float Vec2::cross(Vec2 &v) {
+		return this->x * v.y - this->y * v.x;
+	}
 }

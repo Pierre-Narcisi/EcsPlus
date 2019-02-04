@@ -3,6 +3,8 @@
 #include "../component/AABB.hpp"
 #include "../component/Speed.hpp"
 #include "../component/Pos.hpp"
+#include "../component/Script.hpp"
+#include "../component/Poly.hpp"
 #include "../component/Materials.hpp"
 #include "../component/Mass.hpp"
 #include "../../ecs/Ecs.hpp"
@@ -12,6 +14,8 @@
 namespace physic2D { namespace system {
 	class Hitbox {
 		public:
+			float findAxisLeastPen(int *faceIndex, ID A, ID B);
+			// bool PolyToPoly(manifold *col);
 			bool AABBToAABB(manifold *col);
 			bool CircleToCircle(manifold *col);
 			bool AABBToCircle(manifold *col);

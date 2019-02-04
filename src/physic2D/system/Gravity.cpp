@@ -9,7 +9,7 @@ namespace physic2D { namespace system {
 				ecs::Ecs::get().addComponent<component::Forces>(id);
 				forces = ecs::Ecs::get().getComponentMap<component::Forces>();
 			}
-			forces[id]._forces.push_back(Vec2(0, 9.8 * 2));
+			forces[id]._forces.push_back(Vec2(0, 9.8 * 4));
 		}
 	}
 

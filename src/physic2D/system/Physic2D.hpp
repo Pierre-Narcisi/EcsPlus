@@ -7,6 +7,7 @@
 #include "../component/Forces.hpp"
 #include "../component/Pos.hpp"
 #include "../component/Speed.hpp"
+#include "../component/Poly.hpp"
 #include "../component/AABB.hpp"
 #include <cmath>
 

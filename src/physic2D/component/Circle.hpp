@@ -8,10 +8,14 @@ namespace physic2D { namespace component {
 			_radius = 0;
 		}
 
-		Circle(float radius) {
+		Circle(float radius, bool trigger, bool collidable) {
 			_radius = radius;
+			_trigger = trigger;
+			_collidable = collidable;
 		}
 
 		float _radius;
+		bool _trigger;
+		bool _collidable;
 	};
 }}

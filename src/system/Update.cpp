@@ -5,6 +5,7 @@
 #include "component/graphical/AnimatedSprite.hpp"
 #include "ecs/Graphic.hpp"
 #include "component/graphical/Drawable.hpp"
+#include "component/graphical/NSSprite.hpp"
 #include "component/graphical/Sprite.hpp"
 #include "physic2D/component/Pos.hpp"
 #include "ecs/Ecs.hpp"
@@ -18,6 +19,7 @@ namespace ecs {
 		auto &drawable = ecs.getComponentMap<ecs::component::Drawable>();
 
 		auto &sprite = ecs.getComponentMap<ecs::component::Sprite>();
+		auto &nssprite = ecs.getComponentMap<ecs::component::NSSprite>();
 		auto &animatedSprite = ecs.getComponentMap<ecs::component::AnimatedSprite>();
 
 		auto ids = ecs.filter<physic2D::component::Pos, ecs::component::Drawable>();
@@ -28,10 +30,14 @@ namespace ecs {
 
 		long time;
 		for (auto id : ids) {
-			if (drawable[id].method == GraphicalMethod::Sprite){
+			if (drawable[id].method == GraphicalMethod::Sprite) {
 				sprite[id].sprite->setPosition(pos[id]._pos.x, pos[id]._pos.y);
 				sprite[id].sprite->setRotation(drawable[id].rotation);
 				win->draw(*sprite[id].sprite);
+			} else if (drawable[id].method == GraphicalMethod::NSSprite){
+				nssprite[id].sprite->setPosition(pos[id]._pos.x, pos[id]._pos.y);
+				nssprite[id].sprite->setRotation(drawable[id].rotation);
+				win->draw(*nssprite[id].sprite);
 			} else if (drawable[id].method == GraphicalMethod::AnimatedSprite) {
 				time = ecs::Time::get(TimeUnit::MicroSeconds);
 				auto &asp = animatedSprite[id];

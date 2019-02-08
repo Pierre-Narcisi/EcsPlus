@@ -44,6 +44,7 @@ add_executable(EcsPlus
 
 		src/component/graphical/Drawable.hpp
 		src/component/graphical/Sprite.hpp
+		src/component/graphical/NSSprite.hpp
 
 		src/component/control/Controller.hpp
 		src/component/control/Keyboard.hpp

@@ -7,6 +7,7 @@
 enum class GraphicalMethod {
 	None,
 	Sprite,
+	NSSprite,
 	AnimatedSprite,
 	AnimatedSpriteList,
 	AnimatedSpriteMap

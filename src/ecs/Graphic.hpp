@@ -29,6 +29,8 @@ namespace ecs {
 				else
 					_window = new sf::RenderWindow(mode, "Game", sf::Style::Resize | sf::Style::Close);
 				_window->setFramerateLimit(120);
+
+				pixels = new sf::Uint8[mode.width * mode.height * 4];
 			}
 
 			static Graphic &get();
@@ -47,10 +49,14 @@ namespace ecs {
 				return core::Vector2<float>((float) size.x, (float) size.y);
 			}
 
+			sf::Uint8 *getPixels();
+
 		private:
 			sf::RenderWindow		*_window;
 			sf::Event			_event;
 			std::vector<unsigned int>	_controllers;
+
+			sf::Uint8			*pixels;
 
 			unsigned long			_lastId;
 	};

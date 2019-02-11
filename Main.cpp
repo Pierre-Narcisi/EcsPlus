@@ -13,6 +13,7 @@
 #include <component/graphical/AnimatedSprite.hpp>
 #include <component/graphical/Drawable.hpp>
 #include <zconf.h>
+#include <system/Graphical.hpp>
 #include "src/physic2D/system/Hitbox.hpp"
 #include "src/physic2D/system/Physic2D.hpp"
 #include "src/physic2D/system/Gravity.hpp"
@@ -222,7 +223,8 @@ int main() {
 		hit.UpdateHitbox();
 		});
 	game.addUpdate(100, [](){ecs::Update::UpdateGraphical();});
-	game.addUpdate(101, [&screen](){screen.update();});
+	game.addUpdate(101, [](){ecs::Graphical::DrawPixels();});
+	game.addUpdate(110, [&screen](){screen.update();});
 
 	ID Blanche = ecs::entity::Entity::getId();
 	game.addComponent<physic2D::component::Speed>(Blanche, physic2D::Vec2(-400, 0));

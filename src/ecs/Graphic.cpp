@@ -35,4 +35,8 @@ namespace ecs {
 	bool Graphic::isOpen() {
 		return _window->isOpen();
 	}
+
+	sf::Uint8* Graphic::getPixels() {
+		return pixels;
+	}
 }

@@ -42,7 +42,9 @@ add_executable(EcsPlus
 		src/physic2D/Vec2/vec2.cpp
 		src/physic2D/Vec2/vec2.hpp
 
+		src/component/graphical/AnimatedSprite.hpp
 		src/component/graphical/Drawable.hpp
+		src/component/graphical/Pixel.hpp
 		src/component/graphical/Sprite.hpp
 		src/component/graphical/NSSprite.hpp
 
@@ -58,7 +60,7 @@ add_executable(EcsPlus
 		src/system/control/Controls.cpp
 		src/system/control/Controls.cpp
 
-		Main.cpp src/component/graphical/AnimatedSprite.hpp)
+		Main.cpp src/system/Graphical.cpp src/system/Graphical.hpp)
 
 target_link_libraries(EcsPlus ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(EcsPlus ${Boost_LIBRARIES})

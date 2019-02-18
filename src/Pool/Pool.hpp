@@ -12,6 +12,10 @@
 #include "component/graphical/Drawable.hpp"
 
 class Pool {
-	public:
-		Pool(float size);
+public:
+	Pool(float size);
+
+private:
+	void Balls(float size);
+	void Walls(float size, ID Blanche);
 };

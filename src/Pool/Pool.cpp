@@ -5,6 +5,71 @@ Pool::Pool(float size) {
 	physic2D::Vec2 pos1 = physic2D::Vec2(400, 400);
 	auto &screen = ecs::Graphic::get();
 
+
+	ID Blanche = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(Blanche, physic2D::Vec2(0, 0));
+	game.addComponent<physic2D::component::Pos>(Blanche, physic2D::Vec2(1000, 400));
+	game.addComponent<physic2D::component::Circle>(Blanche, size, false, true);
+	game.addComponent<physic2D::component::Slow>(Blanche, 20);
+	game.addComponent<physic2D::component::Materials>(Blanche, "SuperBall");
+	game.addComponent<ecs::component::Sprite>(Blanche, std::string("assets/BOULES/bblanche.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<physic2D::component::Mass>(Blanche, Blanche);
+	game.addComponent<ecs::component::Drawable>(Blanche, true, 10, GraphicalMethod::Sprite);
+
+	ID table = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Pos>(table, physic2D::Vec2(screen.getWindow()->getSize().x / 2, screen.getWindow()->getSize().y / 2));
+	game.addComponent<ecs::component::Sprite>(table, std::string("assets/pool.png"), ecs::core::Vector2<unsigned int>(screen.getWindow()->getSize().x, screen.getWindow()->getSize().y));
+	game.addComponent<physic2D::component::Mass>(table, table);
+	game.addComponent<ecs::component::Drawable>(table, true, 10, GraphicalMethod::Sprite);
+
+	Balls(size);
+	Walls(size, Blanche);
+
+	ID id = ecs::entity::Entity::getId();
+	game.addComponent<ecs::component::Mouse>(id);
+	game.addComponent<ecs::component::Keyboard>(id);
+	auto &mouse = game.getComponentMap<ecs::component::Mouse>()[id];
+	mouse.mouseMap[KeyMouse::LCLICK] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
+		if (!state)
+			return;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += -1;
+	});
+
+	auto &keyboard = game.getComponentMap<ecs::component::Keyboard>()[id];
+	keyboard.keyMap[KeyKeyboard::UP_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
+		if (!state)
+			return;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += -10;
+	});
+	keyboard.keyMap[KeyKeyboard::LEFT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
+		if (!state)
+			return;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += -10;
+	});
+	keyboard.keyMap[KeyKeyboard::DOWN_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
+		if (!state)
+			return;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += 10;
+	});
+	keyboard.keyMap[KeyKeyboard::RIGHT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
+		if (!state)
+			return;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += 10;
+	});
+	keyboard.keyMap[KeyKeyboard::SPACE] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
+		if (!state)
+			return;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+	});
+}
+
+void Pool::Balls(float size) {
+	auto &game = ecs::Ecs::get();
+	physic2D::Vec2 pos1 = physic2D::Vec2(400, 400);
+
 	ID Ball8 = ecs::entity::Entity::getId();
 	game.addComponent<physic2D::component::Speed>(Ball8);
 	game.addComponent<physic2D::component::Pos>(Ball8, pos1);
@@ -74,7 +139,7 @@ Pool::Pool(float size) {
 	game.addComponent<physic2D::component::Mass>(Ball3, Ball3);
 	game.addComponent<physic2D::component::Slow>(Ball3, 20);
 	game.addComponent<ecs::component::Drawable>(Ball3, true, 10, GraphicalMethod::Sprite);
-	
+
 	ID Ball10 = ecs::entity::Entity::getId();
 	game.addComponent<physic2D::component::Speed>(Ball10);
 	game.addComponent<physic2D::component::Pos>(Ball10, physic2D::Vec2(pos1.x, pos1.y - size * 2));
@@ -154,61 +219,117 @@ Pool::Pool(float size) {
 	game.addComponent<physic2D::component::Mass>(Ball12, Ball12);
 	game.addComponent<physic2D::component::Slow>(Ball12, 20);
 	game.addComponent<ecs::component::Drawable>(Ball12, true, 10, GraphicalMethod::Sprite);
+}
 
-	ID Blanche = ecs::entity::Entity::getId();
-	game.addComponent<physic2D::component::Speed>(Blanche, physic2D::Vec2(0, 0));
-	game.addComponent<physic2D::component::Pos>(Blanche, physic2D::Vec2(1000, 400));
-	game.addComponent<physic2D::component::Circle>(Blanche, size, false, true);
-	game.addComponent<physic2D::component::Slow>(Blanche, 20);
-	game.addComponent<physic2D::component::Materials>(Blanche, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(Blanche, std::string("assets/BOULES/bblanche.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
-	game.addComponent<physic2D::component::Mass>(Blanche, Blanche);
-	game.addComponent<ecs::component::Drawable>(Blanche, true, 10, GraphicalMethod::Sprite);
-	
-	ID table = ecs::entity::Entity::getId();
-	game.addComponent<physic2D::component::Pos>(table, physic2D::Vec2(screen.getWindow()->getSize().x / 2, screen.getWindow()->getSize().y / 2));
-	game.addComponent<ecs::component::Sprite>(table, std::string("assets/pool.png"), ecs::core::Vector2<unsigned int>(screen.getWindow()->getSize().x, screen.getWindow()->getSize().y));
-	game.addComponent<physic2D::component::Mass>(table, table);
-	game.addComponent<ecs::component::Drawable>(table, true, 10, GraphicalMethod::Sprite);
+void Pool::Walls(float size, ID Blanche) {
+	auto &game = ecs::Ecs::get();
 
-
-	ID id = ecs::entity::Entity::getId();
-	game.addComponent<ecs::component::Mouse>(id);
-	game.addComponent<ecs::component::Keyboard>(id);
-	auto &mouse = game.getComponentMap<ecs::component::Mouse>()[id];
-	mouse.mouseMap[KeyMouse::LCLICK] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
-		if (!state)
-			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += -1;
+	ID hole = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(hole);
+	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(640, 72));
+	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
+	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
+	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<physic2D::component::Mass>(hole);
+	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
+		if (other != Blanche) {
+			game.addDeletionQueue(other);
+		} else {
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+		}
 	});
-
-	auto &keyboard = game.getComponentMap<ecs::component::Keyboard>()[id];
-	keyboard.keyMap[KeyKeyboard::UP_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
-		if (!state)
-			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += -10;
+	hole = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(hole);
+	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(1192, 83));
+	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
+	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
+	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<physic2D::component::Mass>(hole);
+	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
+		if (other != Blanche) {
+			game.addDeletionQueue(other);
+		} else {
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+		}
 	});
-	keyboard.keyMap[KeyKeyboard::LEFT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
-		if (!state)
-			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += -10;
+	hole = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(hole);
+	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(1192, 638));
+	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
+	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
+	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<physic2D::component::Mass>(hole);
+	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
+		if (other != Blanche) {
+			game.addDeletionQueue(other);
+		} else {
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+		}
 	});
-	keyboard.keyMap[KeyKeyboard::DOWN_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
-		if (!state)
-			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += 10;
+	hole = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(hole);
+	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(640, 672));
+	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
+	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
+	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<physic2D::component::Mass>(hole);
+	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
+		if (other != Blanche) {
+			game.addDeletionQueue(other);
+		} else {
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+		}
 	});
-	keyboard.keyMap[KeyKeyboard::RIGHT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
-		if (!state)
-			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += 10;
+	hole = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(hole);
+	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(88, 638));
+	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
+	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
+	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<physic2D::component::Mass>(hole);
+	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
+		if (other != Blanche) {
+			game.addDeletionQueue(other);
+		} else {
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+		}
 	});
-	keyboard.keyMap[KeyKeyboard::SPACE] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
-		if (!state)
-			return;
-		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
-		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+	hole = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Speed>(hole);
+	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(88, 84));
+	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
+	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
+	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<physic2D::component::Mass>(hole);
+	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
+		if (other != Blanche) {
+			game.addDeletionQueue(other);
+		} else {
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x = 1000;
+			game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y = 400;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x = 0;
+			game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y = 0;
+		}
 	});
 }

@@ -10,10 +10,10 @@ Pool::Pool(float size) {
 	ID Blanche = ecs::entity::Entity::getId();
 	game.addComponent<physic2D::component::Speed>(Blanche, physic2D::Vec2(0, 0));
 	game.addComponent<physic2D::component::Pos>(Blanche, physic2D::Vec2(1000, 400));
-	game.addComponent<physic2D::component::Circle>(Blanche, size, false, true);
+	game.addComponent<physic2D::component::Circle>(Blanche, 1, false, true);
 	game.addComponent<physic2D::component::Slow>(Blanche, 20);
 	game.addComponent<physic2D::component::Materials>(Blanche, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(Blanche, std::string("assets/BOULES/bblanche.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
+	game.addComponent<ecs::component::Sprite>(Blanche, std::string("assets/BOULES/bblanche.png"), ecs::core::Vector2<unsigned int>(1, 1));
 	game.addComponent<physic2D::component::Mass>(Blanche, Blanche);
 	game.addComponent<ecs::component::Drawable>(Blanche, true, 10, GraphicalMethod::Sprite);
 
@@ -52,22 +52,26 @@ Pool::Pool(float size) {
 	keyboard.keyMap[KeyKeyboard::UP_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += -10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y += -1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::LEFT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += -10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x += -1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::DOWN_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += 10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y += 1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::RIGHT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += 10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x += 1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::SPACE] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)

@@ -63,7 +63,6 @@ add_executable(EcsPlus
 		Main.cpp src/system/Graphical.cpp src/system/Graphical.hpp)
 
 target_link_libraries(EcsPlus ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(EcsPlus ${Boost_LIBRARIES})
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-audio.so)
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-graphics.so)
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-window.so)

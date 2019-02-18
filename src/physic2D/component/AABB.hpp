@@ -34,6 +34,10 @@ namespace physic2D { namespace component {
 			_collidable = collidable;
 		}
 
+		void draw() {
+			
+		}
+
 		Vec2 _min;
 		Vec2 _max;
 		Vec2 _size;

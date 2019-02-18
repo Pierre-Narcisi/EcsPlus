@@ -232,10 +232,10 @@ int main() {
 	game.addUpdate(2, [&physic](){physic.UpdatePhysic();});
 	physic2D::system::Gravity grav = physic2D::system::Gravity();
 	game.addUpdate(2, [&grav](){grav.updateGravity();});
-	game.addUpdate(1, [](){
-		physic2D::system::Hitbox hit;
+	physic2D::system::Hitbox hit;
+	game.addUpdate(1, [&hit](){
 		hit.UpdateHitbox();
-		});
+	});
 	game.addUpdate(100, [](){ecs::Update::UpdateGraphical();});
 	game.addUpdate(110, [&screen](){screen.update();});
 

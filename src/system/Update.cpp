@@ -37,10 +37,13 @@ namespace ecs {
 				sprite[id].sprite->setRotation(drawable[id].rotation);
 				win->draw(*sprite[id].sprite);
 			} else if (drawable[id].method == GraphicalMethod::Pixel){
-				pixel[id].rec.setFillColor(pixel[id].color);
-				pixel[id].rec.setPosition(pos[id]._pos.x, pos[id]._pos.y);
-				win->draw(pixel[id].rec);
-				std::cout << "DRAWING A SPITE" << std::endl;
+				sf::Image image;
+				sf::Texture texture;
+				sf::Sprite sprite;
+				image.create(pixel[id]._size.x, pixel[id]._size.y, pixel[id]._pixels);
+				texture.loadFromImage(image);
+				sprite.setTexture(texture);
+				win->draw(sprite);
 			} else if (drawable[id].method == GraphicalMethod::NSSprite){
 				nssprite[id].sprite->setPosition(pos[id]._pos.x, pos[id]._pos.y);
 				nssprite[id].sprite->setRotation(drawable[id].rotation);

@@ -7,7 +7,9 @@
 #include "../component/Poly.hpp"
 #include "../component/Materials.hpp"
 #include "../component/Mass.hpp"
-#include "../../ecs/Ecs.hpp"
+#include "../../component/graphical/Pixel.hpp"
+#include "../../component/graphical/Drawable.hpp"
+#include "../../ecs/Graphic.hpp"
 #include "../manifold.hpp"
 #include <algorithm>
 
@@ -24,5 +26,9 @@ namespace physic2D { namespace system {
 			void Correction(manifold *col, const float percent);
 			Vec2 Normalize(Vec2 v);
 			void UpdateHitbox();
+			void draw();
+			Hitbox();
+		private:
+			ID pix;
 	};
 }}

@@ -1,6 +1,10 @@
 #pragma once
 
 #include "../Vec2/vec2.hpp"
+#include "../../component/graphical/Pixel.hpp"
+#include "../../component/graphical/Drawable.hpp"
+#include "../../ecs/Graphic.hpp"
+#include "../../physic2D/system/Physic2D.hpp"
 
 namespace physic2D { namespace component {
 	struct AABB {
@@ -34,8 +38,19 @@ namespace physic2D { namespace component {
 			_collidable = collidable;
 		}
 
-		void draw() {
-			
+		void draw(ID pix) {
+			auto &game = ecs::Ecs::get();
+			auto &pixels = game.getComponentMap<ecs::component::Pixel>();
+			auto &pixel = pixels[pix];
+
+			for (int i = _min.x; i < _max.x; i++) {
+				pixel.setPixel(sf::Vector2u(i, _min.y), sf::Color(255, 255, 255, 255));
+				pixel.setPixel(sf::Vector2u(i, _max.y), sf::Color(255, 255, 255, 255));
+			}
+			for (int j = _min.y; j < _max.y; j++) {
+				pixel.setPixel(sf::Vector2u(_min.x, j), sf::Color(255, 255, 255, 255));
+				pixel.setPixel(sf::Vector2u(_max.x, j), sf::Color(255, 255, 255, 255));
+			}
 		}
 
 		Vec2 _min;

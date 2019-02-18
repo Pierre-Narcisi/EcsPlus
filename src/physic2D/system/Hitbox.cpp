@@ -8,6 +8,17 @@ namespace physic2D { namespace system {
 		return v / d;
 	}
 
+	Hitbox::Hitbox() {
+		auto &game = ecs::Ecs::get();
+		auto &screen = ecs::Graphic::get();
+		auto size = screen.getWindow()->getSize();
+
+		pix = ecs::entity::Entity::getId();
+		game.addComponent<physic2D::component::Pos>(pix, physic2D::Vec2(0, 0));
+		game.addComponent<ecs::component::Pixel>(pix, size);
+		game.addComponent<ecs::component::Drawable>(pix, true, 1000, GraphicalMethod::Pixel);
+	}
+
 	void Hitbox::Correction(manifold *col, const float percent) {
 		auto &mas = ecs::Ecs::get().getComponentMap<component::Mass>();
 		auto &pos = ecs::Ecs::get().getComponentMap<component::Pos>();
@@ -98,6 +109,7 @@ namespace physic2D { namespace system {
 				}
 			}
 		}
+		draw();
 	}
 
 	void Hitbox::FrictionResolution(manifold *col) {
@@ -247,6 +259,20 @@ namespace physic2D { namespace system {
 		}
 		*faceIndex = bestIndex;
 		return bestDist;
+	}
+
+	void Hitbox::draw() {
+		auto &AB = ecs::Ecs::get().getComponentMap<component::AABB>();
+		auto AABBIds = ecs::Ecs::get().filter<component::AABB>();
+		auto &c = ecs::Ecs::get().getComponentMap<component::Circle>();
+		auto Circ = ecs::Ecs::get().filter<component::Circle>();
+	
+		for (auto id : AABBIds) {
+			AB[id].draw(pix);
+		}
+		for (auto id : Circ) {
+			c[id].draw(pix, id);
+		}
 	}
 
 	// bool Hitbox::PolyToPoly(manifold *col) {

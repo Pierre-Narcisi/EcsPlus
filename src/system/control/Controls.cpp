@@ -17,7 +17,7 @@ namespace ecs { namespace system {
 		for (auto &keyboard : keyboards) {
 			for (auto it = keyboard.second.keyMap.begin(); it != keyboard.second.keyMap.end(); it++) {
 				if (keyboard.second.keyMap[it->first].second)
-					keyboard.second.keyMap[it->first].second(keyboard.first);
+					keyboard.second.keyMap[it->first].second(keyboard.second.keyMap[it->first].first, keyboard.first);
 			}
 		}
 	}
@@ -28,7 +28,7 @@ namespace ecs { namespace system {
 		for (auto &mouse : mouses) {
 			for (auto it = mouse.second.mouseMap.begin(); it != mouse.second.mouseMap.end(); it++) {
 				if (mouse.second.mouseMap[it->first].second)
-					mouse.second.mouseMap[it->first].second(mouse.first);
+					mouse.second.mouseMap[it->first].second(mouse.second.mouseMap[it->first].first, mouse.first);
 			}
 		}
 	}

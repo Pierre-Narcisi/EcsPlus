@@ -241,6 +241,42 @@ void Pool::Balls(float size) {
 void Pool::Walls(float size, ID Blanche) {
 	auto &game = ecs::Ecs::get();
 
+	ID Wall = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Pos>(Wall, physic2D::Vec2(367.5, 35));
+	game.addComponent<physic2D::component::Speed>(Wall);
+	game.addComponent<physic2D::component::Mass>(Wall);
+	game.addComponent<physic2D::component::AABB>(Wall, physic2D::Vec2(465, 100), false, true);
+
+	Wall = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Pos>(Wall, physic2D::Vec2(911.5, 35));
+	game.addComponent<physic2D::component::Speed>(Wall);
+	game.addComponent<physic2D::component::Mass>(Wall);
+	game.addComponent<physic2D::component::AABB>(Wall, physic2D::Vec2(465, 100), false, true);
+
+	Wall = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Pos>(Wall, physic2D::Vec2(367.5, 684));
+	game.addComponent<physic2D::component::Speed>(Wall);
+	game.addComponent<physic2D::component::Mass>(Wall);
+	game.addComponent<physic2D::component::AABB>(Wall, physic2D::Vec2(465, 100), false, true);
+
+	Wall = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Pos>(Wall, physic2D::Vec2(911.5, 684));
+	game.addComponent<physic2D::component::Speed>(Wall);
+	game.addComponent<physic2D::component::Mass>(Wall);
+	game.addComponent<physic2D::component::AABB>(Wall, physic2D::Vec2(465, 100), false, true);
+
+	Wall = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Pos>(Wall, physic2D::Vec2(35, 360));
+	game.addComponent<physic2D::component::Speed>(Wall);
+	game.addComponent<physic2D::component::Mass>(Wall);
+	game.addComponent<physic2D::component::AABB>(Wall, physic2D::Vec2(100, 460), false, true);
+
+	Wall = ecs::entity::Entity::getId();
+	game.addComponent<physic2D::component::Pos>(Wall, physic2D::Vec2(1238, 360));
+	game.addComponent<physic2D::component::Speed>(Wall);
+	game.addComponent<physic2D::component::Mass>(Wall);
+	game.addComponent<physic2D::component::AABB>(Wall, physic2D::Vec2(100, 460), false, true);
+
 	ID hole = ecs::entity::Entity::getId();
 	game.addComponent<physic2D::component::Speed>(hole);
 	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(640, 72));

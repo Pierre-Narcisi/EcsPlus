@@ -75,6 +75,6 @@ enum class KeyKeyboard: std::uint8_t {
 
 namespace ecs {namespace component {
 	struct Keyboard {
-		std::unordered_map<KeyKeyboard, std::pair<bool, std::function<void(ID)>>> keyMap;
+		std::unordered_map<KeyKeyboard, std::pair<bool, std::function<void(bool, ID)>>> keyMap;
 	};
 }}

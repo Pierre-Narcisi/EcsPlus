@@ -121,8 +121,6 @@ namespace ecs {namespace system {
 		for (auto &mouse : mouses) {
 			for (auto it = mouse.second.mouseMap.begin(); it != mouse.second.mouseMap.end(); it++) {
 				mouse.second.mouseMap[it->first].first = sf::Mouse::isButtonPressed(ControlsSFML::getMouse()[it->first]);
-				if (mouse.second.mouseMap[it->first].first && mouse.second.mouseMap[it->first].second)
-					mouse.second.mouseMap[it->first].second(mouse.first);
 			}
 			if (event.type == sf::Event::EventType::MouseMoved) {
 				mouse.second.position.x = event.mouseMove.x;

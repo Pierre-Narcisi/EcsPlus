@@ -11,9 +11,9 @@
 #include <system/Update.hpp>
 #include <ecs/DataBank.hpp>
 #include <component/graphical/AnimatedSprite.hpp>
+#include <component/graphical/Pixel.hpp>
 #include <component/graphical/Drawable.hpp>
 #include <zconf.h>
-#include <system/Graphical.hpp>
 #include "src/physic2D/system/Hitbox.hpp"
 #include "src/physic2D/system/Physic2D.hpp"
 #include "src/physic2D/system/Gravity.hpp"
@@ -55,6 +55,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball8, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball8, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball8, Ball8);
+	game.addComponent<physic2D::component::Slow>(Ball8, 50);
 	game.addComponent<ecs::component::Drawable>(Ball8, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball7 = ecs::entity::Entity::getId();
@@ -64,6 +65,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball7, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball7, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball7, Ball7);
+	game.addComponent<physic2D::component::Slow>(Ball7, 50);
 	game.addComponent<ecs::component::Drawable>(Ball7, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball14 = ecs::entity::Entity::getId();
@@ -73,6 +75,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball14, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball14, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball14, Ball14);
+	game.addComponent<physic2D::component::Slow>(Ball14, 50);
 	game.addComponent<ecs::component::Drawable>(Ball14, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball9 = ecs::entity::Entity::getId();
@@ -82,6 +85,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball9, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball9, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball9, Ball9);
+	game.addComponent<physic2D::component::Slow>(Ball9, 50);
 	game.addComponent<ecs::component::Drawable>(Ball9, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball2 = ecs::entity::Entity::getId();
@@ -91,6 +95,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball2, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball2, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball2, Ball2);
+	game.addComponent<physic2D::component::Slow>(Ball2, 50);
 	game.addComponent<ecs::component::Drawable>(Ball2, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball1 = ecs::entity::Entity::getId();
@@ -100,6 +105,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball1, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball1, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball1, Ball1);
+	game.addComponent<physic2D::component::Slow>(Ball1, 50);
 	game.addComponent<ecs::component::Drawable>(Ball1, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball3 = ecs::entity::Entity::getId();
@@ -109,6 +115,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball3, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball3, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball3, Ball3);
+	game.addComponent<physic2D::component::Slow>(Ball3, 50);
 	game.addComponent<ecs::component::Drawable>(Ball3, true, 10, GraphicalMethod::Sprite);
 	
 	ID Ball10 = ecs::entity::Entity::getId();
@@ -118,6 +125,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball10, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball10, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball10, Ball10);
+	game.addComponent<physic2D::component::Slow>(Ball10, 50);
 	game.addComponent<ecs::component::Drawable>(Ball10, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball11 = ecs::entity::Entity::getId();
@@ -127,6 +135,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball11, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball11, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball11, Ball11);
+	game.addComponent<physic2D::component::Slow>(Ball11, 50);
 	game.addComponent<ecs::component::Drawable>(Ball11, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball4 = ecs::entity::Entity::getId();
@@ -136,6 +145,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball4, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball4, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball4, Ball4);
+	game.addComponent<physic2D::component::Slow>(Ball4, 50);
 	game.addComponent<ecs::component::Drawable>(Ball4, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball5 = ecs::entity::Entity::getId();
@@ -145,6 +155,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball5, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball5, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball5, Ball5);
+	game.addComponent<physic2D::component::Slow>(Ball5, 50);
 	game.addComponent<ecs::component::Drawable>(Ball5, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball13 = ecs::entity::Entity::getId();
@@ -154,6 +165,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball13, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball13, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball13, Ball13);
+	game.addComponent<physic2D::component::Slow>(Ball13, 50);
 	game.addComponent<ecs::component::Drawable>(Ball13, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball15 = ecs::entity::Entity::getId();
@@ -163,6 +175,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball15, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball15, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball15, Ball15);
+	game.addComponent<physic2D::component::Slow>(Ball15, 50);
 	game.addComponent<ecs::component::Drawable>(Ball15, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball6 = ecs::entity::Entity::getId();
@@ -172,6 +185,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball6, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball6, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball6, Ball6);
+	game.addComponent<physic2D::component::Slow>(Ball6, 50);
 	game.addComponent<ecs::component::Drawable>(Ball6, true, 10, GraphicalMethod::Sprite);
 
 	ID Ball12 = ecs::entity::Entity::getId();
@@ -181,6 +195,7 @@ void createBillard(float size) {
 	game.addComponent<physic2D::component::Materials>(Ball12, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Ball12, std::string("assets/circle.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Ball12, Ball12);
+	game.addComponent<physic2D::component::Slow>(Ball12, 50);
 	game.addComponent<ecs::component::Drawable>(Ball12, true, 10, GraphicalMethod::Sprite);
 
 	ID sauce3 = ecs::entity::Entity::getId();
@@ -223,7 +238,6 @@ int main() {
 		hit.UpdateHitbox();
 		});
 	game.addUpdate(100, [](){ecs::Update::UpdateGraphical();});
-	game.addUpdate(101, [](){ecs::Graphical::DrawPixels();});
 	game.addUpdate(110, [&screen](){screen.update();});
 
 	ID Blanche = ecs::entity::Entity::getId();

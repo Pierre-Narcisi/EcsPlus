@@ -36,7 +36,7 @@ namespace ecs {
 		return _window->isOpen();
 	}
 
-	sf::Uint8* Graphic::getPixels() {
+	std::vector<char> &Graphic::getPixels() {
 		return pixels;
 	}
 }

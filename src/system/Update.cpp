@@ -44,6 +44,7 @@ namespace ecs {
 				texture.loadFromImage(image);
 				sprite.setTexture(texture);
 				win->draw(sprite);
+				pixel[id].clean();
 			} else if (drawable[id].method == GraphicalMethod::NSSprite){
 				nssprite[id].sprite->setPosition(pos[id]._pos.x, pos[id]._pos.y);
 				nssprite[id].sprite->setRotation(drawable[id].rotation);

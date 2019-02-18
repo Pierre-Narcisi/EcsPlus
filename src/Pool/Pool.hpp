@@ -16,5 +16,6 @@ class Pool {
 	public:
 		Pool(float size);
 	private:
-		long _lastTime = 0;
+		void Balls(float size);
+		void Walls(float size, ID Blanche);
 };

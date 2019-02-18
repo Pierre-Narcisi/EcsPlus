@@ -45,6 +45,12 @@ namespace ecs{
 			get()._ids.emplace(id);
 		}
 
+		/// Add id to a deletion queue. It will be deleted when the update of the ecs is called.
+		/// (Prevent segfault when deleting id while in use)
+		/// \param id Id to delete
+		void addDeletionQueue(ID id) {
+			_idsDelete.push_back(id);
+		}
 
 		/// Delete every component of an id
 		/// \param id the ID to delete
@@ -116,12 +122,18 @@ namespace ecs{
 			for (auto &func : updates) {
 				func.second();
 			}
+
+			for (auto &id : _idsDelete) {
+				deleteId(id);
+			}
+			_idsDelete.clear();
 		}
 
 		std::unordered_map<ID, std::unordered_map<std::string, std::function<void()>>>  _deleteIds;
 		std::set<ID>									_ids;
 	private:
-		std::multimap<int, std::function<void()>>				updates;
+		std::vector<ID>					_idsDelete;
+		std::multimap<int, std::function<void()>>	updates;
 
 		template <typename ...Ts>
 		struct isIn {

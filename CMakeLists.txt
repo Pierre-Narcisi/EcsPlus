@@ -60,7 +60,7 @@ add_executable(EcsPlus
 		src/system/control/Controls.cpp
 		src/system/control/Controls.cpp
 
-		Main.cpp src/system/Graphical.cpp src/system/Graphical.hpp)
+		Main.cpp)
 
 target_link_libraries(EcsPlus ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(EcsPlus /usr/lib/x86_64-linux-gnu/libsfml-audio.so)

@@ -6,6 +6,7 @@
 #include "../component/Acceleration.hpp"
 #include "../component/Forces.hpp"
 #include "../component/Pos.hpp"
+#include "../component/Slow.hpp"
 #include "../component/Speed.hpp"
 #include "../component/Poly.hpp"
 #include "../component/AABB.hpp"
@@ -20,6 +21,7 @@ namespace physic2D { namespace system {
 			void UpdateAcceleration();
 			void UpdateForces();
 			void UpdatePhysic();
+			void Slowing();
 
 			long _lastTime;
 			float _deltaTime;

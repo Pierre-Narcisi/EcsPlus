@@ -82,9 +82,21 @@ namespace physic2D { namespace system {
 	
 		_deltaTime = (newTime - _lastTime) / 1000000000.f;
 		_lastTime = newTime;
+		Slowing();
 		UpdateForces();
 		UpdateAcceleration();
 		UpdateSpeed();
 		UpdatePos();
+	}
+
+	void Physic2D::Slowing() {
+		auto SlowIds = ecs::Ecs::get().filter<component::Slow>();
+		auto &slow = ecs::Ecs::get().getComponentMap<component::Slow>();
+		auto &speed = ecs::Ecs::get().getComponentMap<component::Speed>();
+
+		for (auto id : SlowIds) {
+			speed[id]._speed.x -= speed[id]._speed.x * (slow[id]._perc * _deltaTime) / 100;
+			speed[id]._speed.y -= speed[id]._speed.y * (slow[id]._perc * _deltaTime) / 100;
+		}
 	}
 }}

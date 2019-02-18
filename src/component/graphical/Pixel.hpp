@@ -5,23 +5,20 @@
 #pragma once
 
 #include "ecs/Vector2.hpp"
-
+#ifndef SERVER
+#include <SFML/Graphics.hpp>
+#endif
 namespace ecs { namespace component {
 	struct Pixel {
-		Pixel(){
-			this->pos.x = 0;
-			this->pos.y = 0;
+		Pixel(): rec(sf::Vector2f(1,1)){}
+
+		Pixel(sf::Color color): rec(sf::Vector2f(1,1)){
+			this->color = color;
 		}
 
-		Pixel(int x, int y){
-			this->pos.x = x;
-			this->pos.y = y;
-		}
-
-		Pixel(ecs::core::Vector2<int> pos){
-			this->pos = pos;
-		}
-
-		ecs::core::Vector2<int> pos;
+#ifndef SERVER
+		sf::Color			color;
+		sf::RectangleShape	rec;
+#endif
 	};
 }}

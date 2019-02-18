@@ -7,6 +7,7 @@
 #include "component/graphical/Drawable.hpp"
 #include "component/graphical/NSSprite.hpp"
 #include "component/graphical/Sprite.hpp"
+#include "component/graphical/Pixel.hpp"
 #include "physic2D/component/Pos.hpp"
 #include "ecs/Ecs.hpp"
 #include "Update.hpp"
@@ -19,6 +20,7 @@ namespace ecs {
 		auto &drawable = ecs.getComponentMap<ecs::component::Drawable>();
 
 		auto &sprite = ecs.getComponentMap<ecs::component::Sprite>();
+		auto &pixel = ecs.getComponentMap<ecs::component::Pixel>();
 		auto &nssprite = ecs.getComponentMap<ecs::component::NSSprite>();
 		auto &animatedSprite = ecs.getComponentMap<ecs::component::AnimatedSprite>();
 
@@ -34,6 +36,11 @@ namespace ecs {
 				sprite[id].sprite->setPosition(pos[id]._pos.x, pos[id]._pos.y);
 				sprite[id].sprite->setRotation(drawable[id].rotation);
 				win->draw(*sprite[id].sprite);
+			} else if (drawable[id].method == GraphicalMethod::Pixel){
+				pixel[id].rec.setFillColor(pixel[id].color);
+				pixel[id].rec.setPosition(pos[id]._pos.x, pos[id]._pos.y);
+				win->draw(pixel[id].rec);
+				std::cout << "DRAWING A SPITE" << std::endl;
 			} else if (drawable[id].method == GraphicalMethod::NSSprite){
 				nssprite[id].sprite->setPosition(pos[id]._pos.x, pos[id]._pos.y);
 				nssprite[id].sprite->setRotation(drawable[id].rotation);

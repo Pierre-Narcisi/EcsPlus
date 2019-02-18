@@ -29,7 +29,7 @@ namespace ecs {
 		}
 
 		_window->display();
-		_window->clear(sf::Color(8, 150, 112, 255));
+		_window->clear();
 	}
 
 	bool Graphic::isOpen() {

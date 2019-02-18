@@ -15,13 +15,13 @@ Pool::Pool(float size) {
 	game.addComponent<physic2D::component::Materials>(Blanche, "SuperBall");
 	game.addComponent<ecs::component::Sprite>(Blanche, std::string("assets/BOULES/bblanche.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(Blanche, Blanche);
-	game.addComponent<ecs::component::Drawable>(Blanche, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<ecs::component::Drawable>(Blanche, true, 100, GraphicalMethod::Sprite);
 
 	ID table = ecs::entity::Entity::getId();
 	game.addComponent<physic2D::component::Pos>(table, physic2D::Vec2(screen.getWindow()->getSize().x / 2, screen.getWindow()->getSize().y / 2));
 	game.addComponent<ecs::component::Sprite>(table, std::string("assets/pool.png"), ecs::core::Vector2<unsigned int>(screen.getWindow()->getSize().x, screen.getWindow()->getSize().y));
 	game.addComponent<physic2D::component::Mass>(table, table);
-	game.addComponent<ecs::component::Drawable>(table, true, 10, GraphicalMethod::Sprite);
+	game.addComponent<ecs::component::Drawable>(table, true, 5, GraphicalMethod::Sprite);
 
 	Balls(size);
 	Walls(10, Blanche);
@@ -54,22 +54,26 @@ Pool::Pool(float size) {
 	keyboard.keyMap[KeyKeyboard::UP_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += -10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y += -1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::LEFT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += -10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x += -1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::DOWN_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += 10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y += 1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::RIGHT_ARROW] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += 10;
+		game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x += 1;
+		// std::cout << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.x << "\t" << game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos.y << std::endl;
 	});
 	keyboard.keyMap[KeyKeyboard::SPACE] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
 		if (!state)
@@ -286,9 +290,7 @@ void Pool::Walls(float size, ID Blanche) {
 	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(640, 50));
 	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
 	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(hole);
-	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
 	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
 		if (other != Blanche) {
 			game.addDeletionQueue(other);
@@ -304,9 +306,7 @@ void Pool::Walls(float size, ID Blanche) {
 	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(1192, 83));
 	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
 	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(hole);
-	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
 	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
 		if (other != Blanche) {
 			game.addDeletionQueue(other);
@@ -322,9 +322,7 @@ void Pool::Walls(float size, ID Blanche) {
 	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(1192, 638));
 	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
 	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(hole);
-	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
 	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
 		if (other != Blanche) {
 			game.addDeletionQueue(other);
@@ -340,9 +338,7 @@ void Pool::Walls(float size, ID Blanche) {
 	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(640, 672));
 	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
 	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(hole);
-	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
 	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
 		if (other != Blanche) {
 			game.addDeletionQueue(other);
@@ -358,9 +354,7 @@ void Pool::Walls(float size, ID Blanche) {
 	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(88, 638));
 	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
 	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(hole);
-	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
 	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
 		if (other != Blanche) {
 			game.addDeletionQueue(other);
@@ -376,9 +370,7 @@ void Pool::Walls(float size, ID Blanche) {
 	game.addComponent<physic2D::component::Pos>(hole, physic2D::Vec2(88, 84));
 	game.addComponent<physic2D::component::Circle>(hole, size, true, false);
 	game.addComponent<physic2D::component::Materials>(hole, "SuperBall");
-	game.addComponent<ecs::component::Sprite>(hole, std::string("assets/BOULES/b8.png"), ecs::core::Vector2<unsigned int>(size * 2, size * 2));
 	game.addComponent<physic2D::component::Mass>(hole);
-	game.addComponent<ecs::component::Drawable>(hole, true, 10, GraphicalMethod::Sprite);
 	game.addComponent<physic2D::component::Script>(hole, [&game, Blanche](ID other){
 		if (other != Blanche) {
 			game.addDeletionQueue(other);

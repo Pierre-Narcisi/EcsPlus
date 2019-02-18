@@ -109,7 +109,7 @@ namespace physic2D { namespace system {
 				}
 			}
 		}
-		draw();
+		// draw();
 	}
 
 	void Hitbox::FrictionResolution(manifold *col) {

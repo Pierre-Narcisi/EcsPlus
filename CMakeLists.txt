@@ -60,6 +60,9 @@ add_executable(EcsPlus
 		src/system/control/Controls.cpp
 		src/system/control/Controls.cpp
 
+		src/Pool/Pool.cpp
+		src/Pool/Pool.hpp
+
 		Main.cpp)
 
 target_link_libraries(EcsPlus ${CMAKE_THREAD_LIBS_INIT})

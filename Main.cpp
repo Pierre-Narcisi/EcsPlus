@@ -79,7 +79,7 @@ int main() {
 		// std::this_thread::sleep_for (std::chrono::seconds(1));
 		auto x = static_cast<unsigned int>(16666 - (ecs::Time::get(TimeUnit::MicroSeconds) - time) > 0 ? 16666 - (ecs::Time::get(TimeUnit::MicroSeconds) - time) : 0);
 		std::this_thread::sleep_for(std::chrono::microseconds(x));
-		std::cout << 100 * (16666 - x) / 16666 << std::endl;
+		// std::cout << 100 * (16666 - x) / 16666 << std::endl;
 	}
 	
 	return 0;

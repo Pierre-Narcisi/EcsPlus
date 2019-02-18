@@ -176,10 +176,23 @@ Pool::Pool(float size) {
 	game.addComponent<ecs::component::Mouse>(id);
 	game.addComponent<ecs::component::Keyboard>(id);
 	auto &mouse = game.getComponentMap<ecs::component::Mouse>()[id];
-	mouse.mouseMap[KeyMouse::LCLICK] = std::pair<bool, std::function<void(bool, ID)>>(false, [&game, Blanche](bool state, ID id){
-		if (!state)
+
+	auto &lt = this->_lastTime;
+	mouse.mouseMap[KeyMouse::LCLICK] = std::pair<bool, std::function<void(bool, ID)>>(false, [this, &lt, &game, Blanche](bool state, ID id){
+		std::cout << "test" << lt << std::endl;
+		//this->_lastTime = ecs::Time::get(TimeUnit::Seconds);
+		std::cout << ecs::Time::get(TimeUnit::Seconds) << std::endl;
+		if (!state || _lastTime < 2)
 			return;
-		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += -1;
+		// _lastTime = newTime;
+		auto &pos = game.getComponentMap<ecs::component::Mouse>()[id].position;
+		auto &posB = game.getComponentMap<physic2D::component::Pos>()[Blanche]._pos;
+		physic2D::Vec2 v = physic2D::Vec2(posB.x - pos.x, posB.y - pos.y);
+		float dist = v.length();
+		float angle = std::atan2(v.x, v.y);
+
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.x += sinf(angle) * dist;
+		game.getComponentMap<physic2D::component::Speed>()[Blanche]._speed.y += cosf(angle) * dist;
 	});
 
 	auto &keyboard = game.getComponentMap<ecs::component::Keyboard>()[id];

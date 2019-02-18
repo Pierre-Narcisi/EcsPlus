@@ -10,8 +10,11 @@
 #include "../physic2D/component/Mass.hpp"
 #include "../physic2D/Vec2/vec2.hpp"
 #include "component/graphical/Drawable.hpp"
+#include "math.h"
 
 class Pool {
 	public:
 		Pool(float size);
+	private:
+		long _lastTime = 0;
 };
